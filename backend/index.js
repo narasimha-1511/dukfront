@@ -3,10 +3,10 @@ const sequelize = require('./database/db');
 const chatRouter = require('./routers/chatRouter');
 const cors = require('cors');
 
+require("dotenv").config();
 const app = express();
 const port = process.env.PORT || 3000;
 
-require('dotenv').config();
 
 app.use(cors());
 app.use(express.json());

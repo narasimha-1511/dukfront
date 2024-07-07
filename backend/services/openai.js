@@ -1,8 +1,10 @@
 const OpenAI = require("openai/index.mjs");
 const ConversationMessage = require("../model/Session");
+
+require("dotenv").config();
 const openai = new OpenAI({
   // baseURL: "http://jamsapi.hackclub.dev/openai",
-  apiKey: "sk-proj-HcpQjVINWnp9gRUkoT6dT3BlbkFJqsbXEA98p4IZHBlXE7v2",
+  apiKey: process.env.GOOGLE_API_KEY,
 });
 
 async function get_room_options() {
