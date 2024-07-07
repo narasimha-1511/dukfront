@@ -1,0 +1,111 @@
+.chat-container {
+    width: 80%;
+    height: 550px;
+    background-color: #fff;
+    margin: 50px auto;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+.chat-messages {
+    flex-grow: 1;
+    padding: 20px;
+    overflow-y: auto;
+}
+.message {
+    margin-bottom: 20px;
+}
+.bot-message {
+    color: #007BFF;
+}
+.user-message {
+    color: #333;
+    text-align: right;
+}
+.language-option {
+    padding: 20px;
+    text-align: right;
+}
+
+
+
+/* This is for input box */
+.chat-input {
+    border-top: 1px solid #ddd;
+    padding: 20px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+.chat-input input {
+    flex-grow: 1;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border: none;
+    border-radius: 4px;
+}
+.chat-input select {
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    font-size: 14px;
+  }
+.chat-input button {
+    margin-left: 10px;
+    padding: 10px 20px;
+    border: none;
+    background-color: #007BFF;
+    color: #fff;
+    border-radius: 4px;
+    cursor: pointer;
+}
+.chat-input button:hover {
+    background-color: #0056b3;
+    display: flex;
+    justify-content: space-between;
+}
+@media (max-width: 600px) {
+    .chat-input {
+        flex-direction: column; /* Change to column on small screens */
+    }
+
+    .chat-input input {
+        margin-bottom: 10px; /* Add margin to separate input and button */
+    }
+
+    .chat-input button {
+        margin-left: 0; /* Remove left margin on small screens */
+    }
+}
+
+
+
+/* This is for loadong animation */
+#loader {
+border: 16px solid #f3f3f3;
+border-top: 16px solid #007BFF;
+border-radius: 50%;
+width: 60px;
+height: 60px;
+animation: spin 2s linear infinite;
+margin: 20px auto; /* Updated margin to 20px auto */
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+.bot-message pre {
+    color: darkred;
+    white-space: pre-wrap;       /* Since CSS 2.1 */
+    white-space: -moz-pre-wrap;  /* Mozilla, since 1999 */
+    white-space: -pre-wrap;      /* Opera 4-6 */
+    white-space: -o-pre-wrap;    /* Opera 7 */
+    word-wrap: break-word;       /* Internet Explorer 5.5+ */
+}
+
+
+
+
