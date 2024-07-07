@@ -7,9 +7,9 @@ const chatRouter = express.Router();
 chatRouter.post('/session', chatRouterController.createSession);
 
 //deleting the session
-chatRouter.delete('/session', validateSession , chatRouterController.deleteSession);
+chatRouter.delete("/session", chatRouterController.deleteSession);
 
 //chat route
-chatRouter.post('/', validateSession ,   chatRouterController.sendMessage);
+chatRouter.post("/", chatRouterController.sendMessage);
 
 module.exports = chatRouter;

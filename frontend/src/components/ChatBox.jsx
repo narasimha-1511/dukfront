@@ -37,6 +37,7 @@ const ChatBox = () => {
       addMessage(userMessage);
 
       await getSessionStarted().then((data) => {
+        localStorage.setItem("sessionId", data.sessionId);
         console.log(data);
       });
 
@@ -101,6 +102,7 @@ const ChatBox = () => {
     })
       .then((response) => response.json())
       .then((data) => {
+        localStorage.setItem("sessionId", data.sessionId);
         return data;
       });
   }

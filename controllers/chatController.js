@@ -62,33 +62,38 @@ class chatRouterController{
 
     static async sendMessage(req, res){
         try{
-            const { message  } = req.body;
-            const sessionId = req.sessionId;
+          const { message, sessionId } = req.body;
+          // const  = req.sessionId;
+          console.log("Session ID: ", sessionId);
+          console.log("Message: ", message);
 
-            console.log("Message: ", message);
+          const response = await runConversation(message, sessionId);
+          // const response = await run(message);
 
-            
-            const response = await runConversation(message , sessionId);
-            // const response = await run(message);
-            
-            ConversationMessage.create({
-                sessionId,
-                message,
-                isUserMessage: true
-            });
+          ConversationMessage.create({
+            sessionId,
+            message,
+            isUserMessage: true,
+          });
 
-            console.log(response)
+          console.log(response);
 
-            ConversationMessage.create({
-                sessionId,
-                message: response[0].message === undefined ? response : response[0].message.content,
-                isUserMessage: false
-            });
-            
-            res.status(200).json({
-                message: 'Message sent successfully',
-                data : response[0].message === undefined ? response : response[0].message.content
-            });
+          ConversationMessage.create({
+            sessionId,
+            message:
+              response[0].message === undefined
+                ? response
+                : response[0].message.content,
+            isUserMessage: false,
+          });
+
+          res.status(200).json({
+            message: "Message sent successfully",
+            data:
+              response[0].message === undefined
+                ? response
+                : response[0].message.content,
+          });
         }
         catch(err){
             res.status(500).json({

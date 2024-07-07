@@ -3,7 +3,7 @@ const ConversationMessage = require("../model/Session");
 
 require("dotenv").config();
 const openai = new OpenAI({
-  // baseURL: "http://jamsapi.hackclub.dev/openai",
+  baseURL: "http://jamsapi.hackclub.dev/openai",
   apiKey: process.env.GOOGLE_API_KEY,
 });
 
