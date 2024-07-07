@@ -18,9 +18,9 @@ class chatRouterController{
             });
 
             //cookie
-            res.cookie('sessionId', sessionId, {
-                maxAge: 24 * 60 * 60 * 1000 , // 1 day 
-                httpOnly: true
+            await res.cookie("sessionId", sessionId, {
+              maxAge: 24 * 60 * 60 * 1000, // 1 day
+              httpOnly: true,
             });
 
             res.status(200).json({

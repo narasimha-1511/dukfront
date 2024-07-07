@@ -3,15 +3,16 @@ const sequelize = require('./database/db');
 const chatRouter = require('./routers/chatRouter');
 const cors = require('cors');
 const path = require("path");
+const cookieParser = require("cookie-parser");
 
 require("dotenv").config();
 const app = express();
 const port = process.env.PORT || 3000;
 
-
 app.use(cors());
 app.use(express.json());
-app.use('/chat' , chatRouter);
+app.use("/chat", chatRouter);
+app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "./frontend/dist")));
 
 (async () => {
