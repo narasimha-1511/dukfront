@@ -94,7 +94,7 @@ const ChatBox = () => {
   }
 
   async function getSessionStarted() {
-    return fetch("https://dukfront.onrender.com/session", {
+    return fetch("https://dukfront.onrender.com/chat/session", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
