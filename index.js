@@ -2,6 +2,7 @@ const express = require('express');
 const sequelize = require('./database/db');
 const chatRouter = require('./routers/chatRouter');
 const cors = require('cors');
+const path = require("path");
 
 require("dotenv").config();
 const app = express();

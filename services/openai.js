@@ -1,4 +1,4 @@
-const OpenAI = require("openai/index.mjs");
+const OpenAI = require("openai");
 const ConversationMessage = require("../model/Session");
 
 require("dotenv").config();
