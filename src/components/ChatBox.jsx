@@ -10,8 +10,6 @@ const ChatBox = () => {
   const [userInput, setUserInput] = useState("");
   const [history, setHistory] = useState([]);
 
-
-
   const handleSubmit = async (e) => {
     e.preventDefault();
     animation.current.style.display = "block";
@@ -22,33 +20,32 @@ const ChatBox = () => {
         return;
       }
 
+      setUserInput("");
       addMessage(userInput);
 
-      getResponse(userInput).then((data) => {
-        addBotMessageToHistory(data);
-        addMessage(data, true);
+      await getResponse(userInput).then((data) => {
+        console.log(data, "response data");
+        addMessage(data.data, true);
         animation.current.style.display = "none";
         return;
       });
-
-      setUserInput("");
     } else {
       setChatStarted(true);
 
       const userMessage = userInput;
       setUserInput("");
+      addMessage(userMessage);
 
       await getSessionStarted().then((data) => {
         console.log(data);
-        addUserMessageToHistory(data);
-        addMessage(data, true);
-        animation.current.style.display = "none";
+        addUserMessageToHistory(data.message);
       });
 
       const response = await getResponse(userMessage);
-      console.log(response, "repsondee for m");
 
-      addBotMessageToHistory(response.data);
+      console.log(response, "response data");
+      addMessage(response.data, true);
+      animation.current.style.display = "none";
     }
   };
 
@@ -62,37 +59,18 @@ const ChatBox = () => {
       </div>
       <form className="chat-input" onSubmit={handleSubmit}>
         <input
-            type="text"
-            id="user-input"
-            placeholder="Reply ..."
-            value={userInput}
-            onChange={(e) => setUserInput(e.target.value)}
-            />
-        <button id="send-button" onClick={handleSubmit}>Send</button>
+          type="text"
+          id="user-input"
+          placeholder="Reply ..."
+          value={userInput}
+          onChange={(e) => setUserInput(e.target.value)}
+        />
+        <button id="send-button" onClick={handleSubmit}>
+          Send
+        </button>
       </form>
     </div>
   );
-
-  function addUserMessageToHistory(question, doubt, formIT = false) {
-    const message = `\"Here is the LeetCode question along with the doubt I have:\n\n${question}\n\n${doubt}\"`;
-    let newHistory = history;
-    newHistory.push({
-      role: "user",
-      parts: [{ text: formIT ? doubt : message }],
-    });
-    setHistory(newHistory);
-    localStorage.setItem("geminiHistory", JSON.stringify(newHistory));
-  }
-
-  function addBotMessageToHistory(message) {
-    let newHistory = history;
-    newHistory.push({
-      role: "model",
-      parts: [{ text: message }],
-    });
-    setHistory(newHistory);
-    localStorage.setItem("geminiHistory", JSON.stringify(newHistory));
-  }
 
   function addMessage(message, isBot = false) {
     if (isBot) {
@@ -116,18 +94,17 @@ const ChatBox = () => {
   }
 
   async function getSessionStarted() {
-    
-    return  fetch("http://localhost:3000/chat/session", {
+    return fetch("http://localhost:3000/chat/session", {
       method: "POST",
       headers: {
-          "Content-Type": "application/json",
+        "Content-Type": "application/json",
       },
-      })
+    })
       .then((response) => response.json())
       .then((data) => {
-          return data;
-      })
-};
+        return data;
+      });
+  }
 };
 
 export default ChatBox;
