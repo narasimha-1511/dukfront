@@ -11,6 +11,7 @@
   },
   "dependencies": {
     "dotenv": "^16.4.5",
+    "hotel-booking-chatbot": "file:..",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
   },
