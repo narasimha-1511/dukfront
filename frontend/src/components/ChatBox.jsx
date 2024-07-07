@@ -38,7 +38,6 @@ const ChatBox = () => {
 
       await getSessionStarted().then((data) => {
         console.log(data);
-        addUserMessageToHistory(data.message);
       });
 
       const response = await getResponse(userMessage);
